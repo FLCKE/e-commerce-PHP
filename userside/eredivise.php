@@ -1,58 +1,45 @@
 <?php
-// Set session cookie parameters
-$cookieParams = session_get_cookie_params();
-session_set_cookie_params([
-    'lifetime' => 0, // Valid until the user closes the browser or logs out
-    'path' => $cookieParams['path'],
-    'domain' => '', // Set to an empty string or 'localhost' for the local environment
-    'secure' => false, // Set to false if not using HTTPS in the local environment
-    'httponly' => true,
-    'samesite' => 'Lax',
-]);
-
-// Start session
 session_start();
 
-// Check if user is logged in
-if (isset($_SESSION['user_id'])) {
-    // Include your database connection file
-    include 'database.php';
+require_once 'database.php';
 
-    // Query to retrieve user information
-    $query = "SELECT * FROM user WHERE user_id = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "i", $_SESSION['user_id']);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+// Function to fetch products based on category
+function getProductsByCategory($conn, $category) {
+    $query = "SELECT * FROM product WHERE category = '$category'";
+    $result = mysqli_query($conn, $query);
 
-    if ($result) {
-        // Check if there is a matching user
-        if ($row = mysqli_fetch_assoc($result)) {
-            // User information found
-            // ... Your code to display user information ...
+    $products = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Add product details with photo_data as is
+        $productDetails = [
+            'product_id' => $row['product_id'],
+            'product_name' => $row['product_name'],
+            'price' => $row['price'],
+            'photo_data' => $row['photo_data'],
+        ];
 
-            // Example: Display username
-            $welcomeMessage = "Welcome, " . $row['username'];
-
-        } else {
-            // User not found
-            $errorMessage = "User not found.";
-        }
-    } else {
-        // Database error
-        $errorMessage = "Database error: " . mysqli_error($conn);
+        $products[] = $productDetails;
     }
-} else {
-    // Non-connected user
-    $welcomeMessage = "Welcome to Finance Portal"; // Customize this message for non-connected users
+
+    return $products;
 }
+
+// Check the connection
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));
+}
+
+// Fetch products with category "Premier League"
+$premierLeagueProducts = getProductsByCategory($conn, 'Eredivisie');
+
+// Close the database connection
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <title>Welcome to Finance Portal</title>
@@ -62,12 +49,40 @@ if (isset($_SESSION['user_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     
+    
     <style>
-        /* Add your custom styles here */
-        
+        .product-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
 
-    /* Add your custom styles here */
-    .footer {
+        .product-photo {
+            width: 100%;
+            height: 33%; /* Set the height to one-third of the box height */
+            object-fit: contain; /* Maintain aspect ratio and fit within the container */
+            object-position: center; /* Center the image within the container */
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            height: 67%; /* Set the height for the price and product name */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-name,
+        .product-price {
+            margin: 5px 0;
+        }
+
+  /* Add your custom styles here */
+   /* Add your custom styles here */
+   .footer {
         background-color: #f8f9fa; /* Bootstrap background color */
         padding: 20px 0;
         text-align: center;
@@ -76,14 +91,13 @@ if (isset($_SESSION['user_id'])) {
     .footer p {
         margin-bottom: 5px;
     }
-</style>
+
+
     </style>
 </head>
-
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <!-- Left side of the navbar -->
             <ul class="navbar-nav mr-auto">
@@ -194,30 +208,26 @@ Eredivisie
     </div>
 
 
-
-    <div class="signup-form">
-        <form action="home.php" method="post" enctype="multipart/form-data">
-            
-            <?php
-                // Display welcome message or error
-                if (isset($welcomeMessage)) {
-                    echo "<p>$welcomeMessage</p>";
-                } elseif (isset($errorMessage)) {
-                    echo "<p>$errorMessage</p>";
-                }
-            ?>
-            <!-- Rest of your HTML code for the home page -->
-            <!-- Logout Button -->
-           
-        </form>
+   <!-- Fetch and display products based on category -->
+   <div class="container mt-4">
+        <h2 class="mb-4">Eredivise Products</h2>
+        <div class="row">
+            <?php foreach ($premierLeagueProducts as $product) : ?>
+                <div class="col-md-4">
+                    <div class="product-box">
+                        <img src="<?= $product['photo_data'] ?>" alt="Product Photo" class="product-photo">
+                        <div class="product-details">
+                            <h4 class="product-name"><?= $product['product_name'] ?></h4>
+                            <p class="product-price"><strong>Price:</strong> $<?= $product['price'] ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
-   
 
-
-
-
-<!-- Footer -->
-<footer class="footer fixed-bottom">
+    <!-- Footer -->
+    <footer class="footer fixed-bottom">
             <div class="row">
                 <div class="col-md-12">
                     <p>Conditions générales d'achat • Politique de confidentialité • Politique de cookies • Mentions légales • Configurer les cookies • SiteMap</p>
@@ -227,8 +237,13 @@ Eredivisie
         </div>
     </footer>
 
+    <!-- Bootstrap JS and dependencies -->
+    <!-- Use the full version of jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
+<script>
         // Adjust content padding based on navbar and footer height
         var navbarHeight = $('.navbar').outerHeight();
         var footerHeight = $('.footer').outerHeight();
@@ -237,5 +252,4 @@ Eredivisie
     </script>
 
 </body>
-
 </html>

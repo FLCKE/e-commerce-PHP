@@ -85,7 +85,7 @@ if ($result) {
                         <a class="nav-link" href="Members.php">Members</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="product-dashboard.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Orders</a>
@@ -95,6 +95,9 @@ if ($result) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Carts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Acontacts_page.php">Service_Client</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="logout.php">Logout</a>

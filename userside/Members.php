@@ -1,7 +1,29 @@
 <?php
-$apiUrl = 'http://localhost:8283/api/v1/users';
-$jsonData = file_get_contents($apiUrl);
-$users = json_decode($jsonData, true);
+session_start();
+
+// Include the database.php file
+include 'database.php';
+
+// Function to retrieve all user information from the database
+function getAllUsers() {
+    global $conn;
+
+    $sql = "SELECT * FROM user";
+    $result = $conn->query($sql);
+
+    $users = array();
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+    }
+
+    return $users;
+}
+
+// Get all user information from the database
+$users = getAllUsers();
+
 ?>
 
 <!DOCTYPE html>

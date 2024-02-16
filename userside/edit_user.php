@@ -1,5 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Include the database.php file
+    include 'database.php';
+
     // Validate and sanitize input (add your validation logic here)
 
     $editedUser = [
@@ -12,30 +15,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'registration_date' => $_POST['registration_date'], // Include registration date
     ];
 
-    $apiUrl = 'http://localhost:8283/api/v1/users/' . $_GET['id'];
-    $options = [
-        'http' => [
-            'method' => 'PUT',
-            'header' => 'Content-Type: application/json',
-            'content' => json_encode($editedUser),
-        ],
-    ];
+    $userId = $_GET['id'];
 
-    $context = stream_context_create($options);
-    $result = file_get_contents($apiUrl, false, $context);
+    // Function to update a user by user ID using prepared statements
+    function updateUser($userId, $editedUser) {
+        global $conn;
 
-    if ($result === FALSE) {
-        // Handle error, e.g., display an error message
-        echo "Error updating user.";
-    } else {
+        $sql = "UPDATE user SET
+                username = ?,
+                email = ?,
+                password = ?,
+                first_name = ?,
+                last_name = ?,
+                phone_number = ?,
+                registration_date = ?
+                WHERE user_id = ?";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssssi",
+            $editedUser['username'],
+            $editedUser['email'],
+            $editedUser['password'],
+            $editedUser['first_name'],
+            $editedUser['last_name'],
+            $editedUser['phone_number'],
+            $editedUser['registration_date'],
+            $userId
+        );
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
+    }
+
+    // Update the user in the database
+    $updateResult = updateUser($userId, $editedUser);
+
+    if ($updateResult) {
         // Redirect to the members page or display success message
-        header("Location: members.php");
+        header("Location: Members.php");
         exit();
+    } else {
+        // Handle error, e.g., display an error message
+        echo "Error updating user: " . $conn->error;
     }
 } else {
     // Fetch user data to pre-fill the form for editing
-    $apiUrl = 'http://localhost:8283/api/v1/users/' . $_GET['id'];
-    $userData = json_decode(file_get_contents($apiUrl), true);
+    // Include the database.php file
+    include 'database.php';
+
+    $userId = $_GET['id'];
+
+    // Function to retrieve user information by user ID
+    function getUserInfo($userId) {
+        global $conn;
+
+        $sql = "SELECT * FROM user WHERE user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return false;
+        }
+    }
+
+    // Fetch user data
+    $userData = getUserInfo($userId);
 }
 ?>
 
@@ -79,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="registration_date">Registration Date:</label>
             <input type="text" name="registration_date" value="<?php echo $userData['registration_date']; ?>" required>
             <br>
+
             <button type="submit">Update User</button>
         </form>
     </div>
