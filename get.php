@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "sqluser";
 $password = "password";
-$dbname = "e__commerce2";
+$dbname = "e_commerce2"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -17,7 +17,7 @@ $category = $_POST['category'];
 
 
 if($category === '') {
-    $sql = "SELECT product_name, price FROM product";
+    $sql = "SELECT product_name, photo_data, price FROM product";
 } else {
 // Requête pour récupérer les produits de la catégorie spécifiée
 $sql = "SELECT product_name, photo_data, price FROM product WHERE category = '$category'";
@@ -26,7 +26,6 @@ $result = $conn->query($sql);
 }
 $result = $conn->query($sql);
 
-// Affichage des produits
 if ($result->num_rows > 0) {
     echo '<div class="container">';
     echo '<div class="row">';
@@ -41,7 +40,7 @@ if ($result->num_rows > 0) {
         echo '<div class="card">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $row['product_name'] . '</h5>';
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($row['photo_data']) . '" class="card-img-top" alt="Product Image">';
+        echo '<img src="' . $row['photo_data'] . '" class="card-img-top" alt="Product Image" style="max-width: 150px;">';
         echo '<p class="card-text">' . $row['price'] . '<strong>$</strong>' . '</p>';
         echo '</div>';
         echo '</div>';

@@ -34,7 +34,7 @@
           </nav>
 
 <form method="post">
-    <button type="submit" name="category" value="0">Category 1</button>
+    <button type="submit" name="category" value="Premier League">Category 1</button>
     <button type="submit" name="category" value="Electronic">Electronic</button>
     <button type="submit" name="category">All Categories</button>
 </form>
