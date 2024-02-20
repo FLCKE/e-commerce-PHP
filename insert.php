@@ -14,32 +14,43 @@ if ($conn->connect_error) {
 }
 
 // Lecture du fichier CSV
-$data = fopen('./test1.csv', 'r');
+$csv_file = './test1.csv';
+$urls = file($csv_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); // Lire les lignes du fichier CSV
 
-// Lecture du fichier CSV ligne par ligne
-$firstLineSkipped = false;
-while (($url = fgets($data)) !== FALSE) {
-    // Ignorer la première ligne si elle contient des en-têtes
-    if (!$firstLineSkipped) {
-        $firstLineSkipped = true;
-        continue;
-    }
+echo "Contenu du tableau \$urls :<br>";
+foreach ($urls as $url) {
+    echo "$url<br>";
+}
+
+// Préparation de la requête SQL pour la mise à jour
+$sql_update = "UPDATE product SET photo_data = ? WHERE category = 'Pays'";
+
+// Préparation de la déclaration SQL
+$stmt = $conn->prepare($sql_update);
+
+// Vérification de la préparation de la déclaration
+if ($stmt === false) {
+    die("Erreur de préparation de la requête: " . $conn->error);
+}
+
+// Liaison des paramètres
+// $stmt->bind_param("s", $photo_data);
+
+// Exécution de la déclaration pour chaque URL
+foreach ($urls as $url) {
+    $photo_data = $url;
+    $stmt->bind_param("s", $photo_data);
     
-    // Supprimer les espaces et les sauts de ligne supplémentaires
-    $url = trim($url);
-    
-    // Ajouter l'URL de l'image à la base de données
-    $sql_insert = "INSERT INTO product (photo_data) VALUES ('$url')";
-    if ($conn->query($sql_insert) === TRUE) {
-        echo "URL insérée : $url<br>";
+    if ($stmt->execute() === TRUE) {
+        echo "URL mise à jour pour la catégorie 'Pays' : $url<br>";
     } else {
-        echo "Erreur lors de l'insertion de l'URL : $url<br>";
+        echo "Erreur lors de la mise à jour de l'URL pour la catégorie 'Pays' : $url<br>";
     }
 }
 
+// Fermeture de la déclaration
+$stmt->close();
+
 // Fermeture de la connexion
 $conn->close();
-fclose($data);
-
-
 

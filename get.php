@@ -30,13 +30,15 @@ if ($result->num_rows > 0) {
     echo '<div class="container">';
     echo '<div class="row">';
    
-    $count = 0; // Initialisation du compteur
+    $count = 0; // Initialisation du compteur pour trois cards parlignes
     while($row = $result->fetch_assoc()) {
         if ($count % 3 == 0) { // Ouverture d'une nouvelle ligne chaque fois que le compteur est un multiple de 3
             echo '</div><div class="row">';
         }
         echo '<div class="col-md-4">';
         echo '<section class="main py-2">';
+        //  lien vers la page détaillée du produit
+        echo '<a href="detail.php?product_id=' . $row['product_id'] . '" class="card-link">';
         echo '<div class="card">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $row['product_name'] . '</h5>';
@@ -44,6 +46,7 @@ if ($result->num_rows > 0) {
         echo '<p class="card-text">' . $row['price'] . '<strong>$</strong>' . '</p>';
         echo '</div>';
         echo '</div>';
+        echo '</a>'; 
         echo '</div>';
         $count++; // Incrémenter le compteur
     }
