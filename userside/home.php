@@ -72,7 +72,6 @@ if ($result) {
     <div class="signup-form">
         <form action="home.php" method="post" enctype="multipart/form-data">
             <h2>Welcome (User)</h2>
-            <br>
             <?php
                 // Display welcome message or error
                 if (isset($welcomeMessage)) {
@@ -85,6 +84,7 @@ if ($result) {
             <!-- Logout Button -->
             <a href="logout.php" class="btn btn-danger">Logout</a>
             <a href="user_profil.php" class="btn btn-danger">Profil</a>
+            <a href="product.php" class="btn btn-danger">Products</a>
 
 
         </form>
