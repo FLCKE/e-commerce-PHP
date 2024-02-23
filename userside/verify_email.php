@@ -26,7 +26,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_close($update_stmt);
 
         // Display success message
-        echo "Email verification successful! You can now <a href='login.php'>login</a>.";
+        echo '<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Email Verification Success</title>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+                <style>
+                    body {
+                        font-family: "Arial", sans-serif;
+                        background-color: #f8f9fa;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        margin: 0;
+                    }
+
+                    .success-container {
+                        background-color: #ffffff;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        border-radius: 10px;
+                        padding: 30px;
+                        text-align: center;
+                        width: 100%;
+                        max-width: 400px;
+                    }
+
+                    h2 {
+                        color: #333;
+                    }
+
+                    p {
+                        color: #555;
+                        margin-bottom: 20px;
+                    }
+
+                    a {
+                        color: #5e72e4;
+                        text-decoration: none;
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="success-container">
+                    <h2>Email Verification Successful!</h2>
+                    <p>You can now <a href="login.php">login</a>.</p>
+                </div>
+            </body>
+            </html>';
         exit();
     } else {
         // Invalid email or token, or user is already verified

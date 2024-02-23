@@ -113,7 +113,7 @@ $conn->close();
             </ul>
 
             <!-- Brand logo in the middle -->
-            <a class="navbar-brand mx-auto" href="#" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
+            <a class="navbar-brand mx-auto" href="home.php" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
                 Jersey.Club
             </a>
             <!-- Right side of the navbar -->
@@ -129,10 +129,19 @@ $conn->close();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="cart.php">
                         <i class="fa fa-shopping-cart"></i> Panier
                     </a>
                 </li>
+                             <!-- Profile Icon -->
+<li class="nav-item">
+                <?php
+                    if (isset($_SESSION['user_id'])) {
+                        // Display the profile icon for connected users
+                        echo '<a class="nav-link" href="profile.php"><i class="fa fa-user"></i>Profile</a>';
+                    }
+                ?>
+            </li>
                 <li class="nav-item">
                     <?php
                         if (isset($_SESSION['user_id'])) {
@@ -214,12 +223,21 @@ Eredivisie
             <?php foreach ($premierLeagueProducts as $product) : ?>
                 <div class="col-md-4">
                     <div class="product-box">
+                    <a href="product_details.php?product_id=<?= $product['product_id'] ?>">
+
                         <img src="<?= $product['photo_data'] ?>" alt="Product Photo" class="product-photo">
+
                         <div class="product-details">
                             <h4 class="product-name"><?= $product['product_name'] ?></h4>
                             <p class="product-price"><strong>Price:</strong> $<?= $product['price'] ?></p>
+                            <!-- Heart icon inside the product box -->
+                <div class="heart-icon product-favorite" data-product-id="<?= $product['product_id'] ?>">
+                    &hearts;
+                </div>
                         </div>
+            </a>
                     </div>
+
                 </div>
             <?php endforeach; ?>
         </div>
@@ -243,12 +261,59 @@ Eredivisie
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-        // Adjust content padding based on navbar and footer height
-        var navbarHeight = $('.navbar').outerHeight();
-        var footerHeight = $('.footer').outerHeight();
-        $('body').css('padding-top', navbarHeight);
-        $('body').css('padding-bottom', footerHeight);
-    </script>
+  $(document).ready(function() {
+    // Attach a click event to the heart icon with the class 'product-favorite'
+    $('.product-favorite').on('click', function(event) {
+      // Prevent the default behavior (i.e., don't follow the link)
+      event.preventDefault();
+      
+      // Toggle the 'active' class to change the color (red or default)
+      $(this).toggleClass('active');
+
+      // Get the product ID from the data-product-id attribute
+      var productId = $(this).data('product-id');
+
+      // Check if the product ID is not empty
+      if(productId !== undefined && productId !== null) {
+        // Get the existing favorites from the cookie or initialize an empty array
+        var favorites = JSON.parse(getCookie('favorites')) || [];
+
+        // Toggle the product ID in the favorites array
+        if(favorites.includes(productId)) {
+          favorites = favorites.filter(id => id !== productId);
+        } else {
+          favorites.push(productId);
+        }
+
+        // Save the updated favorites array to the cookie
+        setCookie('favorites', JSON.stringify(favorites), 365);
+      }
+    });
+
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // Function to get a cookie
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+  });
+</script>
 
 </body>
 </html>

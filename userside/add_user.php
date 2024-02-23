@@ -55,43 +55,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Add User</title>
-    <!-- Add your CSS stylesheets or include Bootstrap if needed -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./add_user.css">
+
 </head>
+
 <body>
     <div class="container mt-5">
         <h2>Add User</h2>
-        
+
         <form action="add_user.php" method="post">
-            <label for="username">Username:</label>
-            <input type="text" name="username" required>
-            <br>
+            <div class="form-group">
+                <label for="username">
+                    <i class="fas fa-user"></i> Username:
+                </label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            <br>
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope"></i> Email:
+                </label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            <br>
+            <div class="form-group">
+                <label for="password">
+                    <i class="fas fa-lock"></i> Password:
+                </label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
 
-            <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" required>
-            <br>
+            <div class="form-group">
+                <label for="first_name">
+                    <i class="fas fa-user"></i> First Name:
+                </label>
+                <input type="text" class="form-control" name="first_name" required>
+            </div>
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name" required>
-            <br>
+            <div class="form-group">
+                <label for="last_name">
+                    <i class="fas fa-user"></i> Last Name:
+                </label>
+                <input type="text" class="form-control" name="last_name" required>
+            </div>
 
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" name="phone_number" required>
-            <br>
+            <div class="form-group">
+                <label for="phone_number">
+                    <i class="fas fa-phone"></i> Phone Number:
+                </label>
+                <input type="text" class="form-control" name="phone_number" required>
+            </div>
 
-            <button type="submit">Add User</button>
+            <button type="submit" class="btn btn-primary">Add User</button>
         </form>
     </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

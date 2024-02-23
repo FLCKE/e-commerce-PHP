@@ -89,50 +89,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userData = getUserInfo($userId);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Edit User</title>
-    <!-- Add your CSS stylesheets or include Bootstrap if needed -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./edit_user.css">
+
+    
 </head>
 <body>
     <div class="container mt-5">
         <h2>Edit User</h2>
 
         <form action="edit_user.php?id=<?php echo $_GET['id']; ?>" method="post">
-            <label for="username">Username:</label>
-            <input type="text" name="username" value="<?php echo $userData['username']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" name="username" value="<?php echo $userData['username']; ?>" required>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" value="<?php echo $userData['email']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" name="email" value="<?php echo $userData['email']; ?>" required>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" value="<?php echo $userData['password']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password" value="<?php echo $userData['password']; ?>" required>
+            </div>
 
-            <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" value="<?php echo $userData['first_name']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" class="form-control" name="first_name" value="<?php echo $userData['first_name']; ?>" required>
+            </div>
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name" value="<?php echo $userData['last_name']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" class="form-control" name="last_name" value="<?php echo $userData['last_name']; ?>" required>
+            </div>
 
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" name="phone_number" value="<?php echo $userData['phone_number']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" class="form-control" name="phone_number" value="<?php echo $userData['phone_number']; ?>" required>
+            </div>
 
-            <label for="registration_date">Registration Date:</label>
-            <input type="text" name="registration_date" value="<?php echo $userData['registration_date']; ?>" required>
-            <br>
+            <div class="form-group">
+                <label for="registration_date">Registration Date:</label>
+                <input type="text" class="form-control" name="registration_date" value="<?php echo $userData['registration_date']; ?>" required>
+            </div>
 
-            <button type="submit">Update User</button>
+            <button type="submit" class="btn btn-primary">Update User</button>
         </form>
     </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

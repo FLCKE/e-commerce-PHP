@@ -63,65 +63,70 @@ if ($result) {
     <title>JerseyClub</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assests/css/style.css">
+    <link rel="stylesheet" href="./adminstyle.css">
+    <!-- Add this line to include Bootstrap Icons CSS -->
+<!-- Add this line to include Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"><span>JerseyClub</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Adminhome</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Members.php">Members</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="product-dashboard.php">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shipping</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Carts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Acontacts_page.php">Service_Client</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
-                   </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><span>JerseyClub</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="fas fa-home"></i> Adminhome</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Members.php"><i class="fas fa-user"></i> Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product-dashboard.php"><i class="fas fa-box"></i> Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin_promotion.php"><i class="fas fa-gift"></i> Promotion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-cart-plus"></i> Carts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Acontacts_page.php"><i class="fas fa-comments"></i> Service_Client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
 
     <!-- Main Content Section -->
-    <div class="signup-form">
-        <form action="admin.php" method="post" enctype="multipart/form-data">
-            <h2><?php echo isset($welcomeMessage) ? $welcomeMessage : "Admin Dashboard"; ?></h2>
-            <br>
-            <?php
-                // Display welcome message or error
-                if (isset($welcomeMessage)) {
-                    echo "<p>$welcomeMessage</p>";
-                } elseif (isset($errorMessage)) {
-                    echo "<p>$errorMessage</p>";
-                }
-            ?>
-            <!-- Rest of your HTML code for the admin page -->
-        </form>
+<!-- Main Content Section -->
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center font-weight-bold"><?php echo isset($welcomeMessage) ? $welcomeMessage : "Admin Dashboard"; ?></h2>
+                </div>
+               
+            </div>
+        </div>
     </div>
+</div>
+
+
 </body>
 </html>

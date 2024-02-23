@@ -100,7 +100,7 @@ if (isset($_SESSION['user_id'])) {
             </ul>
 
             <!-- Brand logo in the middle -->
-            <a class="navbar-brand mx-auto" href="#" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
+            <a class="navbar-brand mx-auto" href="home.php" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
                 Jersey.Club
             </a>
             <!-- Right side of the navbar -->
@@ -116,10 +116,26 @@ if (isset($_SESSION['user_id'])) {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="cart.php">
                         <i class="fa fa-shopping-cart"></i> Panier
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="user_promotion.php">
+                    <i class="fas fa-percent"></i>Promotioncode
+                    </a>
+                </li>
+
+<!-- Profile Icon -->
+<li class="nav-item">
+                <?php
+                    if (isset($_SESSION['user_id'])) {
+                        // Display the profile icon for connected users
+                        echo '<a class="nav-link" href="profile.php"><i class="fa fa-user"></i>Profile</a>';
+                    }
+                ?>
+            </li>
+
                 <li class="nav-item">
                     <?php
                         if (isset($_SESSION['user_id'])) {
