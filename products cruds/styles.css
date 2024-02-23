@@ -312,3 +312,6 @@
 .btn{
     border-radius: 50px;
 }
+a{
+    color: transparent;
+}
