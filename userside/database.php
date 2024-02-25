@@ -2,7 +2,7 @@
     $dbHost = '127.0.0.1';  // Use the local loopback address.
     $dbUser = 'root';
     $dbPass = '';
-    $dbName = 'e-commerce2';
+    $dbName = 'maillot_db';
 
     $conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
 

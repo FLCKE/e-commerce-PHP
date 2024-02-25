@@ -50,13 +50,57 @@ include 'database.php';
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>profil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   </head>
   <body>
+     <header>
+        <div class=" text-center text-white" style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);" >
+            <span class="fs-3">Livraison sur 14 jours ouvrés</span>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-light  " style="background:url(./assets/wp6374416-football-pc-wallpapers.jpg) 50% 50%;">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="#">E-maillot</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav text-center me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active  text-white fw-bold" aria-current="page" href="#">Acceuil</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link  text-white fw-bold" href="#">Nos produits</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                        <a class="nav-link  text-white fw-bold" href="#">Contactez-nous</a>
+                        </li>
+                    </ul>
+                    <div >
+                        <a href="" class="text-decoration-none mx-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                            </svg>
+                        </a>
+                        <a href="" class="text-decoration-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+                </nav>
+    </header>
     <section class=" row m-5">
-        <div class="col-3  shadow">
-            
+        <div class="col-3  shadow w-25 text-center p-1">
+           <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
+            <button class="btn btn-primary w-75">
+                Modifier
+            </button>
         </div>
         <div class="col">
             <div class=" w-75 p-5 m-auto shadow ">
@@ -102,7 +146,7 @@ include 'database.php';
                         ?>
                 </div>
                 <div class="text-center mt-4 pt-2">
-                    <button type="button" class="btn btn-dark w-50" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#exampleModal">
                            Modifier
                     </button>
                 </div>
@@ -119,7 +163,7 @@ include 'database.php';
                     </div>
                     <div class="modal-body ">
                         <form action="update_user.php" method="post">
-                                 <div class="d-flex fs-5 justify-content-between ">
+                                 <div class="d-flex fs-5 justify-content-between my-2">
                                     <div class=" d-flex mx-5">
                                         <label for="username">Username:</label>
                                         <input type="text" name="username" value="<?php echo $_SESSION['username']; ?>" required>
@@ -132,31 +176,29 @@ include 'database.php';
                                     </div>
     
                                 </div>
-                                 <div class="d-flex fs-5 justify-content-between ">
-                                    <div class=" d-flex mx-5">
-                                        <label for="first_name">First Name:</label>
-                                        <input type="text" name="first_name" value="<?php echo $_SESSION['first_name']; ?>" required>
+                                 <div class="d-flex fs-5 justify-content-between px-5 my-5">
+                                    <div class=" d-flex ">
+                                        <label for="first_name" class=" me-4">First Name:</label>
+                                        <input type="text" class="ms-2" name="first_name" value="<?php echo $_SESSION['first_name']; ?>" required>
                                        
                                     </div>
                                     <div class="d-flex mx-5">
-                                        <label for="last_name">Last Name:</label>
-                                        <input type="text" name="last_name" value="<?php echo $_SESSION['last_name']; ?>" required>
+                                        <label for="last_name" class=" me-4">Last Name:</label>
+                                        <input type="text" class="ms-2" name="last_name" value="<?php echo $_SESSION['last_name']; ?>" required>
                                         
                                     </div>
-    
                                 </div>
-                                 <div class="d-flex fs-6 justify-content-between ">
-                                    <div class=" d-flex mx-5">
-                                        <label for="phone_number">Phone Number:</label>
-                                        <input type="text" name="phone_number" value="<?php echo $_SESSION['phone_number']; ?>" required>
-                                        <br>
-                                    </div>
+                                 <div class="fs-5 my-2 text-center ">
+                                     <label for="phone_number">Phone Number:</label>
+                                     <input type="text" name="phone_number" value="<?php echo $_SESSION['phone_number']; ?>" required>
+                                     <br>
+                                    
     
                                 </div>
                                 
     
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-dark w-75 my-3">Update User</button>
+                                    <button type="submit" class="btn btn-primary w-75 my-3">Update User</button>
                                 </div>
                         </form>
                     </div>
@@ -201,7 +243,7 @@ include 'database.php';
                     <!-- <div class="d-flex fs-5 "> -->
                 </div>
                 <div class="text-center mt-4 pt-2">
-                    <button type="button" class="btn btn-dark w-50" data-bs-toggle="modal" data-bs-target="#addressModal">
+                    <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#addressModal">
                            Modifier
                     </button>
                 </div>
@@ -218,7 +260,7 @@ include 'database.php';
                     </div>
                     <div class="modal-body ">
                         <form action="update_address.php" method="post" >
-                                 <div class="d-flex  justify-content-between ">
+                                 <div class="d-flex  justify-content-between  my-2">
                                     <div class=" d-flex mx-5">
                                         <label for="street_address">Street Address:</label>
                                         <input type="text" name="street_address" value="<?php echo $_SESSION['street_address']; ?>" required>
@@ -233,8 +275,8 @@ include 'database.php';
                                 </div>
                                  <div class="d-flex  justify-content-between ">
                                     <div class=" d-flex mx-5">
-                                        <label for="state">State:</label>
-                                        <input type="text" name="state" value="<?php echo $_SESSION['state']; ?>" required>
+                                        <label for="state" class="me-5">State:</label>
+                                        <input type="text"class="ms-3" name="state" value="<?php echo $_SESSION['state']; ?>" required>
                                        
                                     </div>
                                     <div class="d-flex mx-5">
@@ -248,7 +290,7 @@ include 'database.php';
     
                                 <div class="text-center">
     
-                                    <button type="submit" class=" btn btn-dark w-75 my-3">Update Address</button>
+                                    <button type="submit" class=" btn btn-primary w-75 my-3">Update Address</button>
                                 </div>
                         </form>
                     </div>
@@ -260,6 +302,15 @@ include 'database.php';
             
         </div>
     </section>
+    <div class="text-center my-5">
+        <a href="logout.php" class="btn btn-danger"> Déconnexion</a>
+    </div>
+     <footer>
+    <div class=" text-center text-white" style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);" >
+            <span class="fs-5">E-maillot  -  2024</span>
+        </div>
+   </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+  
+</body>
 </html>
