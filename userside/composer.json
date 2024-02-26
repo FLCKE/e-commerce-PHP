@@ -1,6 +1,17 @@
 {
+    "name": "andre/e-commerce",
+    "description": "ecommerce site",
+    "autoload": {
+        "psr-4": {
+            "Andre\\ECommerce\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "andre"
+        }
+    ],
     "require": {
-        "phpmailer/phpmailer": "^6.9",
-        "stripe/stripe-php": "^13.11"
+        "sendgrid/sendgrid": "^8.1"
     }
 }

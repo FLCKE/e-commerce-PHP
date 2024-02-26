@@ -1,39 +1,54 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
+        'name' => 'andre/e-commerce',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '12eb4b7f9dfd3eb231aebe8b871b409f8d7fb200',
+        'reference' => '0c435a18f9ad941aa331fc3f8adc8b58dc0b2713',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'andre/e-commerce' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '12eb4b7f9dfd3eb231aebe8b871b409f8d7fb200',
+            'reference' => '0c435a18f9ad941aa331fc3f8adc8b58dc0b2713',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'phpmailer/phpmailer' => array(
-            'pretty_version' => 'v6.9.1',
-            'version' => '6.9.1.0',
-            'reference' => '039de174cd9c17a8389754d3b877a2ed22743e18',
+        'sendgrid/php-http-client' => array(
+            'pretty_version' => '4.1.0',
+            'version' => '4.1.0.0',
+            'reference' => '84fe926f3d2ac3454f088c9a06ebdc398cc3727e',
             'type' => 'library',
-            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'install_path' => __DIR__ . '/../sendgrid/php-http-client',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'stripe/stripe-php' => array(
-            'pretty_version' => 'v13.11.0',
-            'version' => '13.11.0.0',
-            'reference' => 'd92a95bd61be5d3141d86986c3b454065f9fcc13',
+        'sendgrid/sendgrid' => array(
+            'pretty_version' => '8.1.1',
+            'version' => '8.1.1.0',
+            'reference' => '08514e75789f192c034fdcf18efe6d8b1a7c91da',
             'type' => 'library',
-            'install_path' => __DIR__ . '/../stripe/stripe-php',
+            'install_path' => __DIR__ . '/../sendgrid/sendgrid',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'sendgrid/sendgrid-php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'starkbank/ecdsa' => array(
+            'pretty_version' => '0.0.5',
+            'version' => '0.0.5.0',
+            'reference' => '484bedac47bac4012dc73df91da221f0a66845cb',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../starkbank/ecdsa',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

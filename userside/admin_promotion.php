@@ -30,36 +30,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['generate_code'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Promotion Page</title>
+    <link rel="stylesheet" href="./adminpromotion.css">
+
     <!-- Include necessary styles/scripts -->
 </head>
 <body>
-    <h2>Admin Promotion Page</h2>
+<h2>Admin Promotion Page</h2>
 
-    <?php
-    // Display success message if applicable
-    if (isset($successMessage)) {
-        echo "<p style='color: green;'>$successMessage</p>";
-    }
-    ?>
+<?php
+// Display success message if applicable
+if (isset($successMessage)) {
+    echo "<p>$successMessage</p>";
+}
+?>
 
-    <!-- Form to generate a new promotion code -->
-    <form action="admin_promotion.php" method="post">
-        <label for="promotion_code">Promotion Code:</label>
-        <input type="text" name="promotion_code" required>
-        <br>
-        <label for="start_date">Start Date:</label>
-        <input type="date" name="start_date" required>
-        <br>
-        <label for="end_date">End Date:</label>
-        <input type="date" name="end_date" required>
-        <br>
-        <label for="discount_percentage">Discount Percentage:</label>
-        <input type="number" name="discount_percentage" min="0" max="100" required>
-        <br>
-        <button type="submit" name="generate_code">Generate Promotion Code</button>
-    </form>
-
-    <!-- Add instructions or additional content -->
+<!-- Form to generate a new promotion code -->
+<form action="admin_promotion.php" method="post">
+    <label for="promotion_code">Promotion Code:</label>
+    <input type="text" name="promotion_code" required>
+    <br>
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" required>
+    <br>
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" required>
+    <br>
+    <label for="discount_percentage">Discount Percentage:</label>
+    <input type="number" name="discount_percentage" min="0" max="100" required>
+    <br>
+    <button type="submit" name="generate_code">Generate Promotion Code</button>
+</form>
 
 </body>
 </html>

@@ -61,73 +61,72 @@ if (isset($_SESSION['user_id'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    
-    <style>
-        /* Add your custom styles here */
-        
+    <link rel="stylesheet" href="./styleshome.css">
+<style>
+    .responsive-div {
+            background: url('https://www.leparisien.fr/resizer/UB7J6ECWUOd2o5gMB7XyarsUi3Q=/arc-anglerfish-eu-central-1-prod-leparisien/public/NKUSP7GV7RHGHAUYHYECML4TJE.jpeg') center/cover no-repeat;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
 
-    /* Add your custom styles here */
-    .footer {
-        background-color: #f8f9fa; /* Bootstrap background color */
-        padding: 20px 0;
-        text-align: center;
-    }
+        .banner {
+            animation: scrollBanner 20s linear infinite;
+            white-space: nowrap;
+            font-size: 18px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            letter-spacing: 2px;
+        }
 
-    .footer p {
-        margin-bottom: 5px;
-    }
-</style>
+        @keyframes scrollBanner {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <!-- Left side of the navbar -->
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="service_client.php">
-                        <i class="fa fa-phone"></i> Service Client
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-newspaper-o"></i> Newsletter
-                    </a>
-                </li>
-            </ul>
+    <!-- Enhanced Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <!-- Left side of the navbar -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="service_client.php">
+                    <i class="fa fa-phone"></i> Service Client
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./subscribeview.php">
+                    <i class="fa fa-newspaper-o"></i> Newsletter
+                </a>
+            </li>
+        </ul>
 
-            <!-- Brand logo in the middle -->
-            <a class="navbar-brand mx-auto" href="home.php" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
-                Jersey.Club
-            </a>
-            <!-- Right side of the navbar -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">
-                        <i class="fa fa-user"></i> Connexion
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-heart"></i> Favoris
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.php">
-                        <i class="fa fa-shopping-cart"></i> Panier
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="user_promotion.php">
-                    <i class="fas fa-percent"></i>Promotioncode
-                    </a>
-                </li>
+        <!-- Brand logo in the middle -->
+        <a class="navbar-brand mx-auto" href="home.php" style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #fff; text-transform: uppercase;">
+            Jersey.Club
+        </a>
 
-<!-- Profile Icon -->
-<li class="nav-item">
+        <!-- Right side of the navbar -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Profile Icon -->
+            <li class="nav-item">
                 <?php
                     if (isset($_SESSION['user_id'])) {
                         // Display the profile icon for connected users
@@ -136,79 +135,105 @@ if (isset($_SESSION['user_id'])) {
                 ?>
             </li>
 
-                <li class="nav-item">
-                    <?php
-                        if (isset($_SESSION['user_id'])) {
-                            // Display the logout button with an icon for connected users
-                            echo '<a href="logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a>';
-                        }
-                    ?>
-                </li>
+            <li class="nav-item">
+                <?php
+                    if (isset($_SESSION['user_id'])) {
+                        // Display the logout button with an icon for connected users
+                        echo '<a href="logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a>';
+                    } else {
+                        // Display the login button for non-connected users
+                        echo '<a href="login.php" class="nav-link"><i class="fa fa-user"></i> Connexion</a>';
+                    }
+                ?>
+            </li>
 
-            </ul>
-        </div>
-    </nav>
-
-     <!-- Categories beneath the navbar -->
-     <div class="container mt-3">
-        <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="./alluserproduct.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/5129/5129670.png" alt="England Flag" width="20" height="20">
-All
+                <a class="nav-link" href="#">
+                    <i class="fa fa-heart"></i> Favoris
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./Premierleague.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/4060/4060230.png" alt="England Flag" width="20" height="20">
-Premier League
+                <a class="nav-link" href="cart.php">
+                    <i class="fa fa-shopping-cart"></i> Panier
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./laliga.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/13980/13980354.png" alt="England Flag" width="20" height="20">
- La Liga
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./bundesliga.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/197/197571.png" alt="England Flag" width="20" height="20">
- Bundesliga
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./seriea.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/323/323325.png" alt="England Flag" width="20" height="20">
-Serie A
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./ligue1.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/323/323315.png" alt="England Flag" width="20" height="20">
-Ligue 1
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./liganos.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/5372/5372974.png" alt="England Flag" width="20" height="20">
-Liga NOS
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./eredivise.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/323/323275.png" alt="England Flag" width="20" height="20">
-Eredivisie
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./pays.php">
-                <img src="https://cdn-icons-png.flaticon.com/128/814/814513.png" alt="England Flag" width="20" height="20">
- Pays
+                <a class="nav-link" href="user_promotion.php">
+                    <i class="fas fa-percent"></i> Promotioncode
                 </a>
             </li>
         </ul>
     </div>
+</nav>
 
+    <!-- Categories beneath the navbar -->
+<div class="container mt-3">
+    <ul class="nav justify-content-center fixed-top bg-light mt-5">
+        <li class="nav-item">
+            <a class="nav-link" href="./alluserproduct.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/5129/5129670.png" alt="England Flag" width="20" height="20">
+                All
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./Premierleague.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/4060/4060230.png" alt="England Flag" width="20" height="20">
+                Premier League
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./laliga.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/13980/13980354.png" alt="Spain Flag" width="20" height="20">
+                La Liga
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./bundesliga.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/197/197571.png" alt="Germany Flag" width="20" height="20">
+                Bundesliga
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./seriea.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/323/323325.png" alt="Italy Flag" width="20" height="20">
+                Serie A
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./ligue1.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/323/323315.png" alt="France Flag" width="20" height="20">
+                Ligue 1
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./liganos.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/5372/5372974.png" alt="Portugal Flag" width="20" height="20">
+                Liga NOS
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./eredivise.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/323/323275.png" alt="Netherlands Flag" width="20" height="20">
+                Eredivisie
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./pays.php">
+                <img src="https://cdn-icons-png.flaticon.com/128/814/814513.png" alt="World Icon" width="20" height="20">
+                Pays
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="responsive-div">
+        <h1>Welcome to The Vintage Pub</h1>
+        <div class="banner">
+            Est. 1920 - Fine Drinks & Good Times - Happy Hour Every Day
+        </div>
+    </div>
 
 
     <div class="signup-form">
