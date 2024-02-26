@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ("../database.php");
+include ("../back-end/temp/database.php");
 $product_id=$_POST['product_id'];
 $quantity= $_POST['quantity'];
 $date_to_add=date("Y-m-d H:i:s");   
@@ -21,7 +21,7 @@ if ($conn->query($sql)==TRUE) {
     echo '<div  style="margin-top:20% " >';
     echo '<h5 class="my-3">Voullez vous allez au :</h5>';
     echo '<a href="cart.php" class="btn btn-primary mx-2">panier</a>';
-    echo '<a href="product.php" class="btn btn-dark mx-2">menu</a>';
+    echo '<a href="../products/product.php" class="btn btn-dark mx-2">menu</a>';
     echo '</div>';
     echo '</div>';
     echo '</body>';

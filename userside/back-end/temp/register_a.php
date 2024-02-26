@@ -30,9 +30,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result) {
         // Registration successful
-        echo "Registration successful! Please copy the verification token below and keep it safe.";
-        echo "<br>";
-        echo "Verification token: $verification_token";
+        // Registration successful
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .success-container {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .success-message {
+            color: #4caf50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .verification-token {
+            background-color: #4caf50;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-message">Registration Successful!</div>
+        <p>Please copy the verification token below and keep it safe.</p>
+        <div class="verification-token">' . $verification_token . '</div>
+    </div>
+</body>
+</html>';
+
 
         // Redirect to another page after a delay (40 seconds in this case)
         echo '<script>
@@ -49,46 +98,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_close($stmt);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Add User</title>
-    <!-- Add your CSS stylesheets or include Bootstrap if needed -->
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Add User</h2>
-        
-        <form action="add_user.php" method="post">
-            <label for="username">Username:</label>
-            <input type="text" name="username" required>
-            <br>
-
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            <br>
-
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            <br>
-
-            <label for="first_name">First Name:</label>
-            <input type="text" name="first_name" required>
-            <br>
-
-            <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name" required>
-            <br>
-
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" name="phone_number" required>
-            <br>
-
-            <button type="submit">Add User</button>
-        </form>
-    </div>
-</body>
-</html>

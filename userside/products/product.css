@@ -137,16 +137,16 @@ form {
     transition: 0.5s;
 }
 
-footer {
+/* footer {
     background-color: rgb(67, 11, 196);
-    /* Couleur de fond du footer */
+   
     color: white;
-    /* Couleur du texte dans le footer */
+    
     padding: 20px;
-    /* Espacement interne du footer */
+    
     text-align: center;
-    /* Alignement du texte au centre */
-}
+
+} */
 
 .footer-content {
     max-width: 1200px;

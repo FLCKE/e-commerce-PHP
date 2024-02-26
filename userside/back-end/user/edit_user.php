@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include the database.php file
-    include 'database.php';
+    include '../temp/database.php';
 
     // Validate and sanitize input (add your validation logic here)
 
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     // Fetch user data to pre-fill the form for editing
     // Include the database.php file
-    include 'database.php';
+    include '../temp/database.php';
 
     $userId = $_GET['id'];
 

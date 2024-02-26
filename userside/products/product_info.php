@@ -1,5 +1,5 @@
 <?php
-include ("../database.php");
+include ("../back-end/temp/database.php");
 $sql = "SELECT product_name, description, price, category, photo_data FROM Product WHERE product_id=".$_GET['id'];
 $result = $conn->query($sql);
 
@@ -39,10 +39,11 @@ if ($row = $result->fetch_assoc()) {
                         <li class="nav-item">
                         <a class="nav-link  text-white fw-bold" href="./product.php">Nos produits</a>
                         </li>
-                        
-                        
                         <li class="nav-item">
-                        <a class="nav-link  text-white fw-bold" href="./contact/contact_us.php">Contactez-nous</a>
+                        <a class="nav-link  text-white fw-bold" href="../order/order_history.php">Commande</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link  text-white fw-bold" href="../contact/contact_us.php">Contactez-nous</a>
                         </li>
                     </ul>
                     <div >

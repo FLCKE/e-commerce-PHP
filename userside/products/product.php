@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Titre</title>
+    <title>products</title>
     <!-- Ajout de Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
    
@@ -38,13 +38,13 @@
                         <a class="nav-link active  text-white fw-bold" aria-current="page" href="../home.php">Acceuil</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link  text-white fw-bold" href="./product.php">Nos produits</a>
+                        <a class="nav-link  text-white fw-bold" href="#">Nos produits</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link  text-white fw-bold" href="../order/order_history.php">Commande</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link  text-white fw-bold" href="./contact/contact_us.php">Contactez-nous</a>
+                        <a class="nav-link  text-white fw-bold" href="../contact/contact_us.php">Contactez-nous</a>
                         </li>
                     </ul>
                     <div >
@@ -53,7 +53,7 @@
                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                             </svg>
                         </a>
-                        <a href="../user_profil.php" class="text-decoration-none">
+                        <a href="../user/user_profil.php" class="text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                             </svg>
@@ -67,11 +67,20 @@
 <div class="container mt-5 custom-search-container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="input-group custom-search-input">
-                <input type="search" class="form-control" placeholder="Entrez le nom de votre équipe" aria-label="Rechercher" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success custom-search-button" type="button" id="button-addon2">Rechercher</button>
-                </div>
+            <div class="input-group custom-search-input ">
+                <form action="./product.php" method="post" class="d-flex">
+                    <select class="form-select" name="category" aria-label="Default select example">
+                        <option selected>Choisisez votre catégories</option>
+                        <option value="Premier League">Premier League jerseys</option>
+                        <option value="Serie A">Serie A jerseys</option>
+                        <option value="La Liga">Liga</option>
+                        <option value="Ligue 1">Ligue 1 jerseys</option>
+                        <option value="Pays">Countries jerseys</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary custom-search-button" type="submit" id="button-addon2">Rechercher</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -92,8 +101,8 @@
                 <button class="dropdown-item" type="submit" name="category" value="Serie A">Serie A jerseys</button>
                 <button class="dropdown-item" type="submit" name="category" value="La Liga">Liga</button>
                 <button class="dropdown-item" type="submit" name="category" value="Ligue 1">Ligue 1 jerseys</button>
-                <button class="dropdown-item" type="submit" name="category" value="Pays">Countries jerseys</button>
-                <button class="dropdown-item active" type="submit" name="category" >All jerseys</button>
+                <button class="dropdown-item " type="submit" name="category" value="Pays">Countries jerseys</button>
+                <button class="dropdown-item " type="submit" name="category" >All jerseys</button>
             </div>
         </div>
     </form>
@@ -110,15 +119,17 @@
         
         $category = $_POST['category'];
         include 'get.php';
+    }else{
+        include 'get.php';
     }
     ?>
     
     </div>
 
-<footer class="mt-5">
-    <div class="footer-content">
-       
-    </div>
+<footer>
+    <div class=" text-center text-white" style="background: rgb(2,0,36);background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);" >
+            <span class="fs-5">E-maillot  -  2024</span>
+        </div>
 </footer>
  
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include ("database.php");
+    include ("../back-end/temp/database.php");
         $username =$_POST['username'];
         $email = $_POST['email'];
         $first_name = $_POST['first_name'];
@@ -20,7 +20,7 @@
     } else {
         
         // Database error
-        header("Location:logout.php");
+        header("Location: ../back-end/temp/logout.php");
         
     }
    exit();

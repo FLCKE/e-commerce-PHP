@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>Register</title>
     <script>
         function validatePassword() {
@@ -64,7 +65,7 @@
 <body>
 <div class="signup-form">
         <form action="register_a.php" method="post" enctype="multipart/form-data">
-            <h2>Register</h2>
+        <h2><i class="fa fa-user-circle"></i> Register</h2>
             <p class="hint-text">Create your account</p>
             <div class="form-group">
                 <div class="row">

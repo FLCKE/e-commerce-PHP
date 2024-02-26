@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include ("../database.php");
+include ("../back-end/temp/database.php");
 // Récupérer la catégorie sélectionnée
 
 
@@ -16,16 +16,16 @@ if ($result->num_rows > 0) {
         
         $sql2 = "INSERT INTO `command`( `user_id`, `product_id`, `quantity`, `order_date`, `status`) VALUES ('$user_id','$product_id','$quantity','$date_to_add','pending')";
         
-        if($conn->query($sql)==TRUE){
-          
+        if($conn->query($sql2)==TRUE){
+            header('Location: order_history.php');
+            
         } else{
               echo 'error'.$conn->error;
         }
     }
-    $sql='DELETE FROM `cart` WHERE user_id='. $_SESSION['user_id'].'';
-    $conn->query($sql);
+    // $sql='DELETE FROM `cart` WHERE user_id='. $_SESSION['user_id'].'';
+    // $conn->query($sql);
     if($conn->query($sql)) {
-        header('Location:order_history.php');
     } else {
         echo 'error : '.$conn->error;
     }   

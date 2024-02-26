@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include ("database.php");
+    include ("../back-end/temp/database.php");
         $street_address =$_POST['street_address'];
         $city = $_POST['city'];
         $state = $_POST['state'];
@@ -20,7 +20,7 @@
     } else {
         
         // Database error
-        header("Location:logout.php");
+        header("Location: ../back-end/temp/logout.php");
         
     }
    exit();

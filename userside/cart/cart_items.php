@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ("../database.php");
+include ("../back-end/temp/database.php");
 // Récupérer la catégorie sélectionnée
 
 
