@@ -13,7 +13,7 @@ Ce projet est un tableau de bord administrateur pour le site e-maillot. Il perme
 
 1. Cloner le dépôt : `[git clone (https://github.com/FLCKE/e-commerce-PHP.git)]`
 
-2. Importer la base de données à partir du fichier fourni (`database.sql`).
+2. Importer la base de données à partir du fichier fourni (`database.sql`) dans une base de donnée renommé maillot_db.
 
 
 ## Utilisation
